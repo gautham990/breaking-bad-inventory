@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 import skullIcon from './assets/skull-sign-icon.png';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = window._env_?.REACT_APP_API_URL || process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 function App() {
   const [chemicals, setChemicals] = useState([]);
