@@ -1,0 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+  background: linear-gradient(45deg, #0f4c3a, #1a5f4a);
+  padding: 20px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border-bottom: 3px solid #00ff88;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.logo-br {
+  background: #00ff88;
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 900;
+}
+
+.logo-ba {
+  background: #ff4444;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 900;
+}
+
+.logo-text {
+  color: #00ff88;
+  margin-left: 15px;
+  font-size: 1.8rem;
+}
+
+.subtitle {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* Main Content */
+.main {
+  flex: 1;
+  padding: 30px 0;
+}
+
+/* Controls */
+.controls {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #00ff88, #00cc6a);
+  color: #000;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #00cc6a, #009955);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+.btn-success {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+}
+
+.btn-success:hover {
+  background: linear-gradient(45deg, #20c997, #17a2b8);
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background: linear-gradient(45deg, #dc3545, #c82333);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(45deg, #c82333, #a71e2a);
+  transform: translateY(-1px);
+}
+
+.btn-small {
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+/* Add Form */
+.add-form {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border: 2px solid #00ff88;
+  backdrop-filter: blur(10px);
+}
+
+.add-form h3 {
+  color: #00ff88;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.form-grid input,
+.form-grid select {
+  padding: 12px;
+  border: 2px solid #444;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #e0e0e0;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+  outline: none;
+  border-color: #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.form-grid input::placeholder {
+  color: #888;
+}
+
+/* Inventory Grid */
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+/* Chemical Cards */
+.chemical-card {
+  background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+  border: 2px solid #444;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.chemical-card:hover {
+  transform: translateY(-5px);
+  border-color: #00ff88;
+  box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+}
+
+.chemical-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00ff88, #ff4444, #ffcc00);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.chemical-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00ff88;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.danger-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.danger-low {
+  background: #28a745;
+  color: white;
+}
+
+.danger-medium {
+  background: #ffc107;
+  color: #000;
+}
+
+.danger-high {
+  background: #dc3545;
+  color: white;
+}
+
+.card-content {
+  margin-bottom: 15px;
+}
+
+.formula {
+  font-size: 1.1rem;
+  color: #ffcc00;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: 'Courier New', monospace;
+}
+
+.purity,
+.quantity,
+.supplier {
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.status-available {
+  background: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.status-low {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  border: 1px solid #ffc107;
+}
+
+.status-critical {
+  background: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.card-actions {
+  text-align: right;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #444;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #00ff88;
+}
+
+/* Footer */
+.footer {
+  background: #0a0a0a;
+  padding: 20px 0;
+  border-top: 2px solid #00ff88;
+  text-align: center;
+  color: #888;
+  margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.8rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo-text {
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 1.4rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inventory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .chemical-card {
+    padding: 15px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
