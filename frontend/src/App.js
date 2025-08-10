@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import skullIcon from './assets/skull-sign-icon.png';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -14,7 +15,7 @@ function App() {
     quantity: '',
     unit: 'L',
     supplier: '',
-    dangerLevel: 'low',
+    dangerous: false,
     status: 'available'
   });
 
@@ -25,7 +26,12 @@ function App() {
   const fetchChemicals = async () => {
     try {
       const response = await axios.get(`${API_URL}/api/chemicals`);
-      setChemicals(response.data);
+      // Convert dangerLevel to dangerous boolean
+      const updatedChemicals = response.data.map(chemical => ({
+        ...chemical,
+        dangerous: chemical.dangerLevel === 'high' || chemical.dangerLevel === 'medium'
+      }));
+      setChemicals(updatedChemicals);
     } catch (error) {
       console.error('Error fetching chemicals:', error);
     }
@@ -61,14 +67,6 @@ function App() {
     }
   };
 
-  const getDangerLevelClass = (level) => {
-    switch (level) {
-      case 'high': return 'danger-high';
-      case 'medium': return 'danger-medium';
-      default: return 'danger-low';
-    }
-  };
-
   const getStatusClass = (status) => {
     switch (status) {
       case 'critical': return 'status-critical';
@@ -82,8 +80,18 @@ function App() {
       <header className="header">
         <div className="container">
           <h1 className="logo">
-            <span className="logo-br">Br</span>
-            <span className="logo-ba">Ba</span>
+            <div className="element-container">
+              <span className="logo-br">
+                <span className="atomic-number">35</span>
+                Br
+                <span className="element-name">Bromine</span>
+              </span>
+              <span className="logo-ba">
+                <span className="atomic-number">56</span>
+                Ba
+                <span className="element-name">Barium</span>
+              </span>
+            </div>
             <span className="logo-text">Chemical Inventory</span>
           </h1>
           <p className="subtitle">Heisenberg's Lab Management System</p>
@@ -150,12 +158,11 @@ function App() {
                   required
                 />
                 <select
-                  value={newChemical.dangerLevel}
-                  onChange={(e) => setNewChemical({...newChemical, dangerLevel: e.target.value})}
+                  value={newChemical.dangerous.toString()}
+                  onChange={(e) => setNewChemical({...newChemical, dangerous: e.target.value === 'true'})}
                 >
-                  <option value="low">Low Danger</option>
-                  <option value="medium">Medium Danger</option>
-                  <option value="high">High Danger</option>
+                  <option value="false">Not Dangerous</option>
+                  <option value="true">Dangerous</option>
                 </select>
                 <select
                   value={newChemical.status}
@@ -175,9 +182,12 @@ function App() {
               <div key={chemical.id} className="chemical-card">
                 <div className="card-header">
                   <h3 className="chemical-name">{chemical.name}</h3>
-                  <div className={`danger-badge ${getDangerLevelClass(chemical.dangerLevel)}`}>
-                    {chemical.dangerLevel.toUpperCase()}
-                  </div>
+                  {chemical.dangerous && (
+                    <div className="danger-badge">
+                      <img src={skullIcon} alt="Toxic" className="hazard-icon" />
+                      TOXIC
+                    </div>
+                  )}
                 </div>
                 <div className="card-content">
                   <div className="formula">{chemical.formula}</div>
@@ -213,7 +223,7 @@ function App() {
 
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2025 Heisenberg Labs. "I am the one who knocks."</p>
+          <p>&copy; 2025 Heisenberg Labs.</p>
         </div>
       </footer>
     </div>

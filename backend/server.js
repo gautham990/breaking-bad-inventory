@@ -13,6 +13,17 @@ app.use(express.json());
 let chemicals = [
   {
     id: uuidv4(),
+    name: 'Acetone',
+    formula: 'CH₃COCH₃',
+    purity: '99.5%',
+    quantity: 200,
+    unit: 'L',
+    supplier: 'Los Pollos Hermanos Supply',
+    dangerLevel: 'low',
+    status: 'available'
+  },
+  {
+    id: uuidv4(),
     name: 'Methylamine',
     formula: 'CH₃NH₂',
     purity: '99.8%',
